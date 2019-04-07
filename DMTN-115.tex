@@ -1,0 +1,68 @@
+
+\documentclass[modern]{aastex62}
+%linenumbers
+
+%\documentclass[DM,authoryear,toc]{lsstdoc}
+\newcommand{\docRef}{set the Reference with {$\backslash$}setDocRef}
+\newcommand{\setDocRef}[1]{
+   \renewcommand{\docRef}{#1}
+}
+
+\setDocRef{DMTN-115}
+\usepackage{newtxtext,newtxmath} % this is causing the etoolbox warning
+\usepackage[USenglish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage{glossaries}
+\usepackage{todonotes}
+\usepackage{collect}
+\usepackage{wrapfig}
+
+\setlist{noitemsep}
+
+\graphicspath{{./}{./figures/}{./images}}
+
+
+
+% Add your own macros here:
+
+\newcommand{\Comment}[3]{\textcolor{#1}{(#2: #3)}}
+\newcommand{\AMS}[1]{\Comment{red}{AMS}{#1}} % Arfon Smith's comments
+
+% lsstdoc documentation: https://lsst-texmf.lsst.io/lsstdoc.html
+
+\providecommand{\secref}[1]{Section~\ref{#1}}
+\providecommand{\appref}[1]{Appendix~\ref{#1}}
+\providecommand{\tabref}[1]{Table~\ref{#1}}
+\providecommand{\figref}[1]{Figure~\ref{#1}}
+\providecommand{\eqnref}[1]{Eq.~\ref{#1}}
+\providecommand{\recref}[1]{REC-\ref{#1}}
+
+
+
+
+\begin{document}
+
+\input{authors}
+\date{\today}
+\input{abstract}
+
+% Create the title page.
+\title{The demise of the filesystem}
+%\maketitle
+ \hypersetup{pdftitle={\@title}, pdfauthor={\@author}, pdfkeywords={\docRef \@keywords}}
+
+\input{body}
+
+% Include all the relevant bib files.
+% https://lsst-texmf.lsst.io/lsstdoc.html#bibliographies
+\bibliographystyle{yahapj}
+\bibliography{local,lsst,lsst-dm,refs_ads,refs,books}
+
+%Make sure lsst-texmf/bin/generateAcronyms.py is in your path
+\section{Acronyms used in this document}\label{sec:acronyms}
+\input{acronyms.tex}
+
+\end{document}
