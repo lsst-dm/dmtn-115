@@ -1,0 +1,20 @@
+sudo: true
+dist: xenial
+services:
+  - docker
+language: python
+python:
+  - '3.7'
+before_install:
+  - "pip install 'lander>=0.1.0,<0.2'"
+script:
+  # Compile PDF using containerized lsst-texmf
+  - "docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'"
+after_success:
+  # Deploy website. See https://github.com/lsst-sqre/lander for CLI options
+  - 'lander --pdf DMTN-115.pdf --upload --env=travis --ltd-product dmtn-115 --title "The demise of the filesystem" --handle "DMTN-115" --authors "[\"William O’Mullane\", \"Niall Gaffney\", \"Frossie Economou\", \"Arfon~M. Smith\"]"'
+env:
+  global:
+    # LSST the Docs credentials
+    - secure: "0psLQG9zlrr0nuBGmxj0rg6QHk9KdXOkJRDhSifSFILyBaOIFrNvc8tyNFmI3XjeBsEUGnW2z/nZdRPCNGcAcAIxWxvxIvkaxFU/EXl046g+Xraz3GC8sKx1gn0TXQvKXLPevt3f4ntCM9Djgsq/Cr+OhHKqrWo1jJ1/9M/b66W/5Ah5mSikr8QCYlY4gFFfz07u5EtqwassgdzbtGWU7eD1pJB/BY+yBGQ+mnRjfxHJHHOb9x2jbHeX9leWsg70cfDcCv3PWl3Kbd6qqkXe+LiwqGnnxaBvAZPM1DLm8n3ZOync5pJhHi/vq3JeCm61okYClIsGYqlklcRgmdSeHDrl3pahwHApr8Ljn9xCd9rjNTN+xwvyStTCVcLLCQan5cjhCfTAipNORT/N0bK2q53+pZdqoGLWSyAJTWVWnoq3BYpin0HnpkrsE5svjlcqymn+a6gIoOwSy+zpL9tJZVFfEBVCkLOZ7pK3cV7HnftPl5vgXWbbB9IcWpv8V0XTZk1WW3TQl4LDCECZaTFaUbrywALUCEzFsLsJRxYzzD+MqBXRD3VQd4inqxqrpJd17/S4EmzvyxXQxn/P3wrNa4XutJ5VCPo/GnJEDDJbEq563zvys+K46gM1wvwSCMtWexBP+slHv54GhGGMHz1Im5yTl6yekftsMiCwwx7Rvr8="
+    - secure: "tEMRlp9hMCRkxgxxW2UOCUwaIVkY9k19Ybg0mPevnOBDukENt8OKSNqjNb5F1X2gvi3x2k3kEihnBdUHIXRu6CtBPO+SWyxdaYzQzS+4uiZaZTWtw7aTK1OaMLRJuuYklU0LEw38N5uPjuQZBHUFqqY3k+j7RFOB+o/qBJ9TEyHfdoSl8tSDiwN30I1mWaBQgpUpsvZ0rdRkPiRNejDs/Duvgrp6SGqfFys0bQIvbj81AgVd84elFTuSlMWQ0MNdbd2P4kmUgpU7Jhy9gEGuSwVKeEWkWpabCG3co2EX69bXB0mmvqZq5gRKciafNvET7I374ENXcVmN27GPqkXpNhfA4SfRabfUuuyADyox8Kgy4ul4Ge+7639cOWgdMyFjywVrfORAx2Ge/xLw4rO4F1xswN3L0cwKjfO8cXYsN6Ub9h+zAYYJ8o/ZdiLyo0vJfQiuX15p/zhsJQkSL1x3g5oiTjW20cjMe+tt2V6cWPJHrCgiD8hOkKUcb5/8ecKMI/e7s9njJR+4XeC9rW7nNR4ms79PP9//UOHonY8gLKpKKZ9FXARHdU/l910qrAVslVcI4nMXxgp79B97UlLj6G+yk1R5LTs+4QttuWh+b6pDZcNpCANDoJaTzhBpKbNqhcOtQP55LbfjTIwWnZDTyp5wL7lkNZyjyoab+b8Dhhs="
