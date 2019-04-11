@@ -21,9 +21,15 @@ have real time query driven structure for the file organization, removing how ma
 organize data through a sea of nested symlinks.
 Some provide local POSIX caches of that users view of the 
 psudo-filesystem, allowing for POSIX style applications to access the files with
-fopen, fscan, and fclose standard commands. At scale, applications often forgo
+fopen, fscan, and fclose standard commands. Additionally, these providers do 
+not show users how data are stored. One can simply request data in the format 
+needed (e.g. Excel, CSV, or as I assume it is the JSON format the web apps
+use for sheets).   At scale, applications often forgo
 such posix layers and simply use the CRUD interfaces to the objects to load them into 
-memory, act on the objects, and then update or delete them. 
+memory, act on the objects, and then update or delete them, in the format they need
+as input and with the format they natively produce. Further, the data providers need
+not update their data archive when formats change, simply provide a new updated
+data access format that can be fueled by legacy data formats.
 
 It is time for Astronomy data researchers to follow this curve. As users have migrated
 from using tools on their laptops to suport collaboration while reducing
