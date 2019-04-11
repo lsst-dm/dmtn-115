@@ -1,7 +1,40 @@
 \section{Introduction} \label{sec:intro}
 
+Object Stores are nothing new to Astronomy.  FITS and IRAF tapes are examples
+of object stores that were used when file systems were able to handle the volumes 
+of data being produced. Even then, standards for migrating from Object Store to file 
+systems were created, allowing for objects to be retrieved into a predefined namespace
+on disk.  The explosion of individual POSIX disk capacity and POSIX-like file systems
+have produced generations of researchers who have never used an Object Store. While
+this growth has supported data systems up till now, the size and complexity of
+data being produced by surveys and even pointed telescope archives is reaching
+scales where the requirements placed on file access by the POSIX standard are 
+significantly hindering our ability to work with data.  Different parallel file systems
+have different strengths and weaknesses.  
+
+At large scale, data service providers such as Dropbox and AWS do not store files
+in POSIX systems.  Rather they present the illusion of directory structure layered over 
+large scale object stores. This allows for faster file access, with only CRUD style
+functions taking place on each object.  Further, as the psudo-filesystem layer is simply a 
+view of structure typically provided by a graph database, users can arrange or potentially
+have real time query driven structure for the file organization, removing how many now 
+organize data through a sea of nested symlinks.
+Some provide local POSIX caches of that users view of the 
+psudo-filesystem, allowing for POSIX style applications to access the files with
+fopen, fscan, and fclose standard commands. At scale, applications often forgo
+such posix layers and simply use the CRUD interfaces to the objects to load them into 
+memory, act on the objects, and then update or delete them. 
+
+It is time for Astronomy data researchers to follow this curve. As users have migrated
+from using tools on their laptops to suport collaboration while reducing
+individuals need to manage their systems (Jupyter Hubs, Overleaf, Google Slides), 
+so should astronomical data processing and analysis. We propose the adoption of
+a common Astronomical data access API layer with the following characteristics:
+
+
+
 \section{Recommendation }
-We should  expose file systems and static name spaces.  Data needs to breath. We should use a common abstraction which allows users to work flexibly and not worrying about the data storage beneath.
+We should NOT expose file systems and static name spaces.  Data needs to breath. We should use a common abstraction which allows users to work flexibly and not worrying about the data storage beneath.
 
 \section{Why do we recommend these things?}
 Filesystems with name spaces are very fragile at large scale. As we get larger data sets we have to trick the filesystem to not run out of Inodes, we make countless sub directories to cope with our thousands of files.
