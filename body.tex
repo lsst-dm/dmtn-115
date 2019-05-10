@@ -40,13 +40,55 @@ a common Astronomical data access API layer with the following characteristics:
 
 
 \section{Recommendation }
-We should NOT expose file systems and static name spaces.  Data needs to breath. We should use a common abstraction which allows users to work flexibly and not worrying about the data storage beneath.
+
+How do we paint this as not just VO again
+
+\begin{enumerate}
+\item We recommend requiring astronomical data sharing be done through \emph{common API
+access layers}.
+
+\item We recommend that all funded astronomical projects with \emph{software deliverables
+leverage these APIs} for data access. 
+
+\item We recommend that API layers \emph{expose both data and metadata in common 
+transferable and transformable formats} (e.g. CAOM).
+
+\item We recommend community development of \emph{data and metadata transform services}
+to support these common API layers 
+
+\item We recommend requiring all data providers to subscribe to a 
+\emph{common federated identity service} (e.g. InCommon or 
+Globus Auth) that is supported by most university and research organizations. There 
+must also be 
+an authentication source for users at institutions without such means and for 
+citizen science efforts.
+
+\item We recommend that \emph{POSIX based file access be deprecated
+in software development} and only used when applications require thread safe
+data access (something that is currently not possible with FITS files).
+
+\item We recommend the development of a psudo-directory structure system to
+integrate local and remote files into a dynamic namespace for each user and potentially
+each users use-case (e.g. the Box sync interface or the FUSE based WholeTale file system
+\citep{BRINCKMAN2019854}) 
+
+
+\end{enumerate}
 
 \section{Why do we recommend these things?}
+
+
+We should NOT expose file systems and static name spaces.  Data needs to breath. We should use a common abstraction which allows users to work flexibly and not worrying about the data storage beneath.
+
 Filesystems with name spaces are very fragile at large scale. As we get larger data sets we have to trick the filesystem to not run out of Inodes, we make countless sub directories to cope with our thousands of files.
 This is turn leads to countless hours spent fighting over how to organize files  the \emph{right way} in a filesystem.
 Countless years have been spent fighting over data formats (FITS vs HDF vs CVS vs Pandas).
 If we move code then perhaps the filesystem is not organised in the same manner and the code may not work - remote access to allow caching is not always an option.
+
+We need to foster better remote collaboration.  The laptop is the bane of file sharing.
+This has changed with cloud based psudo-file systems but require storage in a single 
+cloud providers infrastructure. By creating a FileSystem as a Service (FSAAS) federated
+across data and cloud providers, we will win.
 
 
 \section{What should  we do ?}
