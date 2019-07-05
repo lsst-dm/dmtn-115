@@ -47,7 +47,7 @@ depicted in \figref{fig:ci}. Part os such a model is an object store oriented AP
 
 \begin{figure}
 \centering
-\includegraphics[width=0.45\textwidth]{CI}
+\includegraphics[width=0.45\textwidth]{CI-Layers}
 \includegraphics[width=0.45\textwidth]{CI-LSST}
 \caption{Industry standard Cyber infrastructure model (left) and an astronomy instantiation of such a model (right)\label{fig:ci}}
 \end{figure}
@@ -74,6 +74,7 @@ integrate local and remote files into a dynamic namespace for each user and pote
 each users use-case (e.g. the Box sync interface or the \gls{FUSE} based WholeTale file system
 \citep{BRINCKMAN2019854})
 
+
 \section{Why we should kill the filesystem}
 
 Users should not care and repositories should not be tied to legacy formats  and storage representations because of legacy constraints  at other repositories.
@@ -95,10 +96,13 @@ This "Infrastructure as Code" \citep{morris2016infrastructure} approach lowers t
 and allows for easier adoption of more standardized services that will enable large-scale
 astronomical research in ways that are well demonstrated in plant genomics (CyVerse and Galaxy), natural hazards (Designsafe), and surface water research (Hydroshare).
 
+\subsection{The catch }
+Switching to an object store removes the filesystem bottle neck however it also removes the filesystem index. This implies that a registry of the objects must be contained. We frequently do this anyway usually sucking meta data into a databases to allow searching - just in the case of an object store this would no longer be  optional.
+
 \section{Example Service Architecture- The Butler}
-The LSST butler
+Creation of the LSST data butler \citep{2018arXiv181208085J} has been driven by the need to abstract data access away from algorithms.
+The algorithm code deals with Python objects and never directly with data formats or even storage. The data butler is a little more than a data access layer, it includes a full registry of all data objects and how to locate them. This means it may sit atop a filesystem or an object store - a Prototype S3 plugin is now available and we are testing it in a pipeline.  The data butler is astronomy oriented - it has a built in understanding of certain relationships such as between observations and calibrations or between observations and region of the sky. Since all metadate is held in a registry provenance queries can be answered by the butler and it already can act as the registry to find objects in an object store.
 
-\section{Library example - AstroPy}
-What is needed to go beyond \gls{LSST} and AstroPy?
-
-
+\section{Conclusion}
+We should stop worrying about filesystems in astronomy - we should agree on a decent API for object storage and a registry to go with it.
+The registry should build on existing agreements i.e. based on CAOM-2 \citep{2007ASPC..376..347D}.

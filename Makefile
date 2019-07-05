@@ -12,8 +12,8 @@ all: $(OBJ)
 
 $(OBJ): $(tex) acronyms.tex
 	latexmk -bibtex -xelatex -f $(SRC)
-        makeglossaries $(DOC)        
-        xelatex  $(SRC)
+	makeglossaries $(DOC)
+	xelatex  $(SRC)
 
 
 #The generateAcronyms.py  script is in lsst-texmf/bin - put that in the path
