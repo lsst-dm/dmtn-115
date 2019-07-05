@@ -41,7 +41,8 @@
 \providecommand{\recref}[1]{REC-\ref{#1}}
 
 
-
+\input{aglossary}
+\makeglossaries
 
 \begin{document}
 
@@ -62,7 +63,5 @@
 \bibliography{local,lsst,lsst-dm,refs_ads,refs,books}
 
 %Make sure lsst-texmf/bin/generateAcronyms.py is in your path
-\section{Acronyms used in this document}\label{sec:acronyms}
-\input{acronyms.tex}
-
+\printglossaries
 \end{document}

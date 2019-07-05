@@ -2,7 +2,8 @@
 tex=$(filter-out $(wildcard *acronyms.tex aglossary.tex)  , $(wildcard *.tex))  
 
 
-SRC= DMTN-115.tex
+DOC= DMTN-115
+SRC= $(DOC).tex
 
 OBJ=$(SRC:.tex=.pdf)
 
@@ -11,6 +12,9 @@ all: $(OBJ)
 
 $(OBJ): $(tex) acronyms.tex
 	latexmk -bibtex -xelatex -f $(SRC)
+        makeglossaries $(DOC)        
+        xelatex  $(SRC)
+
 
 #The generateAcronyms.py  script is in lsst-texmf/bin - put that in the path
 acronyms.tex :$(tex) myacronyms.txt
