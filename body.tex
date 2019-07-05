@@ -15,24 +15,24 @@ have different strengths and weaknesses.
 At large scale, data service providers such as Dropbox and AWS do not store files
 in POSIX systems.  Rather they present the illusion of directory structure layered over
 large scale object stores. This allows for faster file access, with only CRUD style
-functions taking place on each object.  Further, as the psudo-filesystem layer is simply a
+functions taking place on each object.  Further, as the pseudo-filesystem layer is simply a
 view of structure typically provided by a graph database, users can arrange or potentially
 have real time query driven structure for the file organization, removing how many now
 organize data through a sea of nested symlinks.
 Some provide local POSIX caches of that users view of the
-psudo-filesystem, allowing for POSIX style applications to access the files with
+pseudo-filesystem, allowing for POSIX style applications to access the files with
 fopen, fscan, and fclose standard commands. Additionally, these providers do
 not show users how data are stored. One can simply request data in the format
 needed (e.g. Excel, CSV, or as I assume it is the JSON format the web apps
 use for sheets).   At scale, applications often forgo
-such posix layers and simply use the CRUD interfaces to the objects to load them into
+such Posix layers and simply use the CRUD interfaces to the objects to load them into
 memory, act on the objects, and then update or delete them, in the format they need
-as input and with the format they natively produce. Further, the data providers need
+as input and with the format they naively produce. Further, the data providers need
 not update their data archive when formats change, simply provide a new updated
 data access format that can be fueled by legacy data formats.
 
 It is time for Astronomy data researchers to follow this curve. As users have migrated
-from using tools on their laptops to suport collaboration while reducing
+from using tools on their laptops to support collaboration while reducing
 individuals need to manage their systems (Jupyter Hubs, Overleaf, Google Slides),
 so should astronomical data processing and analysis. We propose the adoption of
 a common Astronomical data access API layer.
@@ -67,7 +67,7 @@ citizen science efforts.
 in software development} and only used when applications require thread safe
 data access (something that is currently not possible with FITS files).
 
-\item We recommend the development of a psudo-directory structure system to
+\item We recommend the development of a pseudo-directory structure system to
 integrate local and remote files into a dynamic namespace for each user and potentially
 each users use-case (e.g. the Box sync interface or the FUSE based WholeTale file system
 \citep{BRINCKMAN2019854})
@@ -82,12 +82,12 @@ We should NOT expose file systems and static name spaces.  Data needs to breath.
 
 Filesystems with name spaces are very fragile at large scale. As we get larger data sets we have to trick the filesystem to not run out of Inodes, we make countless sub directories to cope with our thousands of files.
 This is turn leads to countless hours spent fighting over how to organize files  the \emph{right way} in a filesystem.
-Countless years have been spent fighting over data formats (FITS vs HDF vs CVS vs Pandas).
+Countless years have been spent fighting over data formats (FITS vs HDF vs CSV vs Pandas).
 If we move code then perhaps the filesystem is not organised in the same manner and the code may not work - remote access to allow caching is not always an option.
 
 We need to foster better remote collaboration.  The laptop is the bane of file sharing.
-This has changed with cloud based psudo-file systems but require storage in a single
-cloud providers infrastructure. By creating a FileSystem as a Service (FSAAS) federated
+This has changed with cloud based pseudo-file systems but require storage in a single
+cloud providers infrastructure. By creating a Filesystem as a Service (FSAAS) federated
 across data and cloud providers, we will win.
 
 
