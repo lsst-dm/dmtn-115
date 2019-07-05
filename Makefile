@@ -1,5 +1,5 @@
 #for dependency you want all tex files  but for acronyms you do not want to include the acronyms file itself.
-tex=$(filter-out $(wildcard *acronyms.tex) , $(wildcard *.tex))  
+tex=$(filter-out $(wildcard *acronyms.tex aglossary.tex)  , $(wildcard *.tex))  
 
 
 SRC= DMTN-115.tex
@@ -16,6 +16,8 @@ $(OBJ): $(tex) acronyms.tex
 acronyms.tex :$(tex) myacronyms.txt
 	generateAcronyms.py   $(tex)
 
+aglossary.tex :$(tex) myacronyms.txt
+	generateAcronyms.py  -g aglossary.tex $(tex)
 clean :
 	latexmk -c
 	rm *.pdf *.nav *.bbl *.xdv *.snm
