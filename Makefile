@@ -8,7 +8,6 @@ SRC= $(DOC).tex
 OBJ=$(SRC:.tex=.pdf)
 
 #Default when you type make
-all: $(OBJ)
 
 $(OBJ): $(tex) acronyms.tex
 	latexmk -bibtex -xelatex -f $(SRC)

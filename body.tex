@@ -41,7 +41,8 @@ a common Astronomical data access \gls{API} layer.
 
 \section{Recommendations }
 \begin{enumerate}
-\item Adopt an industry  standard layered architecture for astronomy processing and data access as
+ \item Develop a community wide architecture supporting Science as a Service following
+	an industry  standard layered architecture for astronomy processing and data access as
 depicted in \figref{fig:ci}.
 
 
@@ -52,9 +53,9 @@ depicted in \figref{fig:ci}.
 \caption{Industry standard Cyber infrastructure model (left) and an astronomy instantiation of such a model (right)\label{fig:ci}}
 \end{figure}
 
-\item Compel all funded funded astronomical projects with \emph{software deliverables} to  leverage these APIs for data access.
+\item Compel all funded funded astronomical projects with \emph{software deliverables} to  leverage the architecture and  APIs for data access.
 
-\item The astronomical community must develop \emph{data and \gls{metadata} transform services}
+\item Develop \emph{data and \gls{metadata} transform services}
 to support these common \gls{API} layers to aid interoperation.
 
 \item Adopt and subscribe to a \emph{common federated identity service} (e.g. InCommon or
@@ -64,8 +65,34 @@ Globus Auth) that is supported by most university and research organizations.
 
 
 
-\section{Object store application programming interface}
-Part of a Cyber Infrastructure model such as depicted in \figref{gif:ci} is an object store oriented API - this should be used for data sharing. Such APIs exist such as Amazon's S3.
+\section{Commodity services and \gls{software} based community architecture} \label{sec:refarc}
+The astronomy and astrophysics community community have historically relied on the development and use of bespoke \gls{software} and hardware infrastructure to solve challenges related to the managing and analyzing datasets at a scale that was difficult to find in industry or other scientific domains.
+These requirements are no longer unique and we have access to a wealth of open source \gls{software}, commodity hardware, and managed \gls{cloud} services (offered by commercial providers and federally-funded institutions) that are well positioned to meet the needs of astronomers and astrophysicists \cite{2019AAS...23345706M, 2019AAS...23324505B}.
+By providing documentation and reference implementations of the “astronomy \gls{stack}” using these technologies and making it easier for researchers and missions to access \gls{cloud} computing services, we can reduce operations costs, accelerate time to science, and increase the scientific return on Federally-funded research in astronomy and astrophysics.
+
+
+\figref{fig:ci} This shows the
+layers of the \gls{CI} from the interfaces for service access exposed
+at multiple levels, the common domain wide enabled services, and a collection of system level components that support the
+higher levels of the \gls{CI}.
+The lower down the diagram are commodity layers based on well established and supported
+components. As one moves up from these layers, more abstraction can be done to
+expose these pieces in domain or even question level interfaces. By making these
+abstractions, more universal service can be developed that can be applied more globally
+across the entirety of the \gls{cyberinfrastructure} as a whole.  An example of this would be
+authentication, where each university or agency may provide their own authentication method
+but unifying services like CILogin can bring those together to give global spaced
+identity for a wide range of users based on disparate authentication systems.
+By providing this structure along with a reference architecture of these System Services based on
+well supported \gls{software} components, providers are easily able to both deploy and support these common services which enable
+cross mission and center \gls{interoperability}. This structure also reflects how this architecture allows for greater reusability as one gets closer to the actual implementation of these
+services while supporting greater flexibility and general usability as one works further from the core components.
+This service architecture should be based on using standard reusable \gls{software} from many of the established standards developed outside of astronomy (e.g. common authentication mechanisms such as CILogin, standard data and \gls{metadata} management systems).  Standard \gls{API} interfaces should also be used to expose these components to higher level \gls{API}s. Data
+formatting and \gls{metadata} structure can be exposed at the service level, allowing for
+more data and \gls{metadata} reuse.
+
+
+Part of a Cyber Infrastructure model such as depicted in \figref{fig:ci} is an object store oriented API - this should be used for data sharing. Such APIs exist such as Amazon's S3.
 
 The  \gls{API} layers must \emph{expose both data and \gls{metadata} in common
 transferable and transformable formats} (e.g. \gls{CAOM}).
