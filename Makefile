@@ -20,7 +20,7 @@ acronyms.tex :$(tex) myacronyms.txt
 	generateAcronyms.py   $(tex)
 
 aglossary.tex :$(tex) myacronyms.txt
-	generateAcronyms.py  -g aglossary.tex $(tex)
+	generateAcronyms.py -t "Petabytes DM"  -g aglossary.tex $(tex)
 clean :
 	latexmk -c
 	rm *.pdf *.nav *.bbl *.xdv *.snm

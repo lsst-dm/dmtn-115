@@ -65,10 +65,10 @@ Globus Auth) that is supported by most university and research organizations.
 
 
 
-\section{Commodity services and \gls{software} based community architecture} \label{sec:refarc}
-The astronomy and astrophysics community community have historically relied on the development and use of bespoke \gls{software} and hardware infrastructure to solve challenges related to the managing and analyzing datasets at a scale that was difficult to find in industry or other scientific domains.
-These requirements are no longer unique and we have access to a wealth of open source \gls{software}, commodity hardware, and managed \gls{cloud} services (offered by commercial providers and federally-funded institutions) that are well positioned to meet the needs of astronomers and astrophysicists \cite{2019AAS...23345706M, 2019AAS...23324505B}.
-By providing documentation and reference implementations of the “astronomy \gls{stack}” using these technologies and making it easier for researchers and missions to access \gls{cloud} computing services, we can reduce operations costs, accelerate time to science, and increase the scientific return on Federally-funded research in astronomy and astrophysics.
+\section{Commodity services and software based community architecture} \label{sec:refarc}
+The astronomy and astrophysics community community have historically relied on the development and use of bespoke software and hardware infrastructure to solve challenges related to the managing and analyzing datasets at a scale that was difficult to find in industry or other scientific domains.
+These requirements are no longer unique and we have access to a wealth of open source software, commodity hardware, and managed cloud services (offered by commercial providers and federally-funded institutions) that are well positioned to meet the needs of astronomers and astrophysicists \cite{2019AAS...23345706M, 2019AAS...23324505B}.
+By providing documentation and reference implementations of the “astronomy stack” using these technologies and making it easier for researchers and missions to access cloud computing services, we can reduce operations costs, accelerate time to science, and increase the scientific return on Federally-funded research in astronomy and astrophysics.
 
 
 \figref{fig:ci} This shows the
@@ -79,15 +79,15 @@ The lower down the diagram are commodity layers based on well established and su
 components. As one moves up from these layers, more abstraction can be done to
 expose these pieces in domain or even question level interfaces. By making these
 abstractions, more universal service can be developed that can be applied more globally
-across the entirety of the \gls{cyberinfrastructure} as a whole.  An example of this would be
+across the entirety of the \gls{CI} as a whole.  An example of this would be
 authentication, where each university or agency may provide their own authentication method
 but unifying services like CILogin can bring those together to give global spaced
 identity for a wide range of users based on disparate authentication systems.
 By providing this structure along with a reference architecture of these System Services based on
-well supported \gls{software} components, providers are easily able to both deploy and support these common services which enable
-cross mission and center \gls{interoperability}. This structure also reflects how this architecture allows for greater reusability as one gets closer to the actual implementation of these
+well supported software components, providers are easily able to both deploy and support these common services which enable
+cross mission and center interoperability. This structure also reflects how this architecture allows for greater reusability as one gets closer to the actual implementation of these
 services while supporting greater flexibility and general usability as one works further from the core components.
-This service architecture should be based on using standard reusable \gls{software} from many of the established standards developed outside of astronomy (e.g. common authentication mechanisms such as CILogin, standard data and \gls{metadata} management systems).  Standard \gls{API} interfaces should also be used to expose these components to higher level \gls{API}s. Data
+This service architecture should be based on using standard reusable software from many of the established standards developed outside of astronomy (e.g. common authentication mechanisms such as CILogin, standard data and \gls{metadata} management systems).  Standard \gls{API} interfaces should also be used to expose these components to higher level \gls{API}s. Data
 formatting and \gls{metadata} structure can be exposed at the service level, allowing for
 more data and \gls{metadata} reuse.
 
