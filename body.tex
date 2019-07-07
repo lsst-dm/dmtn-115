@@ -68,7 +68,7 @@ Globus Auth) that is supported by most university and research organizations.
 
 
 \section{Commodity services and software based community architecture} \label{sec:refarc}
-The astronomy and astrophysics community community have historically relied on the development and use of bespoke software and hardware infrastructure to solve challenges related to the managing and analyzing datasets at a scale that was difficult to find in industry or other scientific domains.
+The astronomy and astrophysics community have historically relied on the development and use of bespoke software and hardware infrastructure to solve challenges related to the managing and analyzing datasets at a scale that was difficult to find in industry or other scientific domains.
 These requirements are no longer unique and we have access to a wealth of open source software, commodity hardware, and managed cloud services (offered by commercial providers and federally-funded institutions) that are well positioned to meet the needs of astronomers and astrophysicists \cite{2019AAS...23345706M, 2019AAS...23324505B}.
 By providing documentation and reference implementations of the “astronomy \gls{stack}” using these technologies and making it easier for researchers and missions to access cloud computing services, we can reduce operations costs, accelerate time to science, and increase the scientific return on Federally-funded research in astronomy and astrophysics.
 
@@ -85,15 +85,17 @@ across the entirety of the \gls{CI} as a whole.
 
 An example of this would be
 authentication, where each university or agency may provide their own authentication method
-but unifying services like CILogin can bring those together to give global spaced
+but unifying services like CILogon can bring those together to give global spaced
 identity for a wide range of users based on disparate authentication systems.
 By providing this structure along with a reference architecture of these System Services based on
 well supported software components, providers are easily able to both deploy and support these common services which enable
 cross mission and center interoperability. This structure also reflects how this architecture allows for greater reusability as one gets closer to the actual implementation of these
 services while supporting greater flexibility and general usability as one works further from the core components.
-Alternatives such as using github authentication may be more flexible but lack the tie rigor of InCommon which assures the individual is a member of an academic body - we must also work with these industry standards though.
+Alternatives such as using github authentication may be more flexible but lack the 
+ % tie -- I assume this was an error.
+ rigor of InCommon which assures the individual is a member of an academic body - we must also work with these industry standards though.
 
-This service architecture should be based on using standard reusable software from many of the established standards developed outside of astronomy (e.g. common authentication mechanisms such as CILogin, standard data and \gls{metadata} management systems).  Standard \gls{API} interfaces should also be used to expose these components to higher level \gls{API}s. Data
+This service architecture should be based on using standard reusable software from many of the established standards developed outside of astronomy (e.g. common authentication mechanisms such as CILogon, standard data and \gls{metadata} management systems).  Standard \gls{API} interfaces should also be used to expose these components to higher level \gls{API}s. Data
 formatting and \gls{metadata} structure can be exposed at the service level, allowing for
 more data and \gls{metadata} reuse.
  An example of a storage agnostic data/metadata layer is the \gls{LSST} data butler \citep{2018arXiv181208085J}. Creation  has been driven by the need to abstract data access away from algorithms.
@@ -111,7 +113,7 @@ There must also be an authentication source for users at institutions without su
 \section{Why we should kill the filesystem}
 
 Users should not care and repositories should not be tied to legacy formats  and storage representations because of legacy constraints  at other repositories.
-The rest of the world has already moved on,  Google, Amazon, Git, netflix etc. do not host large filesystems and and can scale because they are not limited by this antiquated formalism.
+The rest of the world has already moved on,  Google, Amazon, Git, Netflix etc. do not host large filesystems and and can scale because they are not limited by this antiquated formalism.
 
 Filesystems with name spaces are very fragile at large scale. As we get larger data sets we have to trick the filesystem to not run out of Inodes, we make countless sub directories to cope with our thousands of files.
 This is turn leads to countless hours spent fighting over how to organize files  the \emph{right way} in a filesystem.
