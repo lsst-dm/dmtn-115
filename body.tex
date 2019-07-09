@@ -1,7 +1,7 @@
 
 \section{Introduction} \label{sec:intro}
 
-{\bf Executive summary: the filesystem notion limits our ability to scale processing and has long since been dropped by industry. Astronomy needs to move on with a new architecture.}
+\textbf{Executive summary: the filesystem notion limits our ability to scale processing and has long since been dropped by industry. Astronomy needs to move on with a new architecture.}
 
 Object Stores are nothing new to Astronomy.  \gls{FITS} and \gls{IRAF} tapes are examples
 of object stores that were used when file systems were unable to handle the volumes
@@ -24,11 +24,11 @@ have real time query driven structure for the file organization, removing how ma
 organize data through a sea of nested symlinks.
 Some provide local \gls{POSIX} caches of that users view of the
 pseudo-filesystem, allowing for \gls{POSIX} style applications to access the files with
-fopen, fscan, and fclose standard commands. Additionally, these providers do
+\texttt{fopen}, \texttt{fscan}, and \texttt{fclose} standard commands. Additionally, these providers do
 not show users how data are stored. One can simply request data in the format
-needed (e.g. Excel, \gls{CSV}, or as I assume it is the \gls{JSON} format the web apps
+needed (e.g., Excel, \gls{CSV}, or as I assume it is the \gls{JSON} format the web apps
 use for sheets).   At scale, applications often forgo
-such Posix layers and simply use the \gls{CRUD} interfaces to the objects to load them into
+such POSIX layers and simply use the \gls{CRUD} interfaces to the objects to load them into
 memory, act on the objects, and then update or delete them, in the format they need
 as input and with the format they naively produce. Further, the data providers need
 not update their data archive when formats change, simply provide a new updated
@@ -60,7 +60,7 @@ depicted in \figref{fig:ci}.
 \item Develop \emph{data and \gls{metadata} transform services}
 to support these common \gls{API} layers to aid interoperation.
 
-\item Adopt and subscribe to a \emph{common federated identity service} (e.g. InCommon or
+\item Adopt and subscribe to a \emph{common federated identity service} (e.g., InCommon or
 Globus Auth) that is supported by most university and research organizations.
 \end{enumerate}
 
@@ -69,7 +69,7 @@ Globus Auth) that is supported by most university and research organizations.
 
 \section{Commodity services and software based community architecture} \label{sec:refarc}
 The astronomy and astrophysics community have historically relied on the development and use of bespoke software and hardware infrastructure to solve challenges related to the managing and analyzing datasets at a scale that was difficult to find in industry or other scientific domains.
-These requirements are no longer unique and we have access to a wealth of open source software, commodity hardware, and managed cloud services (offered by commercial providers and federally-funded institutions) that are well positioned to meet the needs of astronomers and astrophysicists \cite{2019AAS...23345706M, 2019AAS...23324505B}.
+These requirements are no longer unique and we have access to a wealth of open source software, commodity hardware, and managed cloud services (offered by commercial providers and federally-funded institutions) that are well positioned to meet the needs of astronomers and astrophysicists \citep{2019AAS...23345706M, 2019AAS...23324505B}.
 By providing documentation and reference implementations of the “astronomy \gls{stack}” using these technologies and making it easier for researchers and missions to access cloud computing services, we can reduce operations costs, accelerate time to science, and increase the scientific return on Federally-funded research in astronomy and astrophysics.
 
 
@@ -91,21 +91,21 @@ By providing this structure along with a reference architecture of these System 
 well supported software components, providers are easily able to both deploy and support these common services which enable
 cross mission and center interoperability. This structure also reflects how this architecture allows for greater reusability as one gets closer to the actual implementation of these
 services while supporting greater flexibility and general usability as one works further from the core components.
-Alternatives such as using github authentication may be more flexible but lack the 
+Alternatives such as using github authentication may be more flexible but lack the
  % tie -- I assume this was an error.
- rigor of InCommon which assures the individual is a member of an academic body - we must also work with these industry standards though.
+ rigor of InCommon which assures the individual is a member of an academic body --- we must also work with these industry standards though.
 
-This service architecture should be based on using standard reusable software from many of the established standards developed outside of astronomy (e.g. common authentication mechanisms such as CILogon, standard data and \gls{metadata} management systems).  Standard \gls{API} interfaces should also be used to expose these components to higher level \gls{API}s. Data
+This service architecture should be based on using standard reusable software from many of the established standards developed outside of astronomy (e.g., common authentication mechanisms such as CILogon, standard data and \gls{metadata} management systems).  Standard \gls{API} interfaces should also be used to expose these components to higher level \gls{API}s. Data
 formatting and \gls{metadata} structure can be exposed at the service level, allowing for
 more data and \gls{metadata} reuse.
  An example of a storage agnostic data/metadata layer is the \gls{LSST} data butler \citep{2018arXiv181208085J}. Creation  has been driven by the need to abstract data access away from algorithms.
-The \gls{algorithm} code deals with Python objects and never directly with data formats or even storage. The data butler is a lot more than a data access layer, it includes a full registry of all data objects and how to locate them. This means it may sit atop a filesystem or an object store - a prototype S3 plugin is now available and we are testing it in a \gls{pipeline}.  The data butler is astronomy oriented - it has a built in understanding of certain relationships such as between observations and calibrations or between observations and region of the sky. Since all metadate is held in a registry \gls{provenance} queries can be answered by the butler and it already can act as the registry to find objects in an object store.
+The \gls{algorithm} code deals with Python objects and never directly with data formats or even storage. The data butler is a lot more than a data access layer, it includes a full registry of all data objects and how to locate them. This means it may sit atop a filesystem or an object store --- a prototype S3 plugin is now available and we are testing it in a \gls{pipeline}.  The data butler is astronomy oriented --- it has a built in understanding of certain relationships such as between observations and calibrations or between observations and region of the sky. Since all metadate is held in a registry \gls{provenance} queries can be answered by the butler and it already can act as the registry to find objects in an object store.
 
 
 
-Part of a Cyber Infrastructure model such as depicted in \figref{fig:ci} is an object store oriented \gls{API} - this should be used for data sharing. Such APIs exist such as Amazon's S3.
+Part of a Cyber Infrastructure model such as depicted in \figref{fig:ci} is an object store oriented \gls{API} --- this should be used for data sharing. Such APIs exist such as Amazon's S3.
 The  \gls{API} layers must \emph{expose both data and \gls{metadata} in common
-transferable and transformable formats} (e.g. \gls{CAOM}).
+transferable and transformable formats} (e.g., \gls{CAOM}).
 
 
 There must also be an authentication source for users at institutions without such means and for citizen science efforts.
@@ -113,12 +113,12 @@ There must also be an authentication source for users at institutions without su
 \section{Why we should kill the filesystem}
 
 Users should not care and repositories should not be tied to legacy formats  and storage representations because of legacy constraints  at other repositories.
-The rest of the world has already moved on,  Google, Amazon, Git, Netflix etc. do not host large filesystems and and can scale because they are not limited by this antiquated formalism.
+The rest of the world has already moved on,  Google, Amazon, GitHub, Netflix etc. do not host large filesystems and and can scale because they are not limited by this antiquated formalism.
 
 Filesystems with name spaces are very fragile at large scale. As we get larger data sets we have to trick the filesystem to not run out of Inodes, we make countless sub directories to cope with our thousands of files.
 This is turn leads to countless hours spent fighting over how to organize files  the \emph{right way} in a filesystem.
-Countless years have been spent fighting over data formats (\gls{FITS} vs \gls{HDF} vs \gls{CSV} vs Pandas).
-If we move code then perhaps the filesystem is not organised in the same manner and the code may not work - remote access to allow caching is not always an option.
+Countless years have been spent fighting over data formats (\gls{FITS} vs \gls{HDF} \citep{2015ASPC..495...11M} vs \gls{CSV} vs Pandas).
+If we move code then perhaps the filesystem is not organised in the same manner and the code may not work --- remote access to allow caching is not always an option.
 
 We need to foster better remote collaboration.  The laptop is the bane of file sharing.
 This has changed with cloud based pseudo-file systems but require storage in a single
@@ -130,7 +130,7 @@ in software development} and only used when applications require thread safe
 data access (something that is currently not possible with \gls{FITS} files).
 We should however  develop a pseudo-directory structure system to
 integrate local and remote files into a dynamic namespace for each user and potentially
-each users use-case (e.g. the Box sync interface or the \gls{FUSE} based WholeTale file system
+each users use-case (e.g., the Box sync interface or the \gls{FUSE} based WholeTale file system
 \citep{BRINCKMAN2019854})
 
 This "Infrastructure as Code" \citep{morris2016infrastructure} approach lowers the bar to entry
@@ -138,13 +138,13 @@ and allows for easier adoption of more standardized services that will enable la
 astronomical research in ways that are well demonstrated in plant genomics (CyVerse and Galaxy), natural hazards (Designsafe), and surface water research (Hydroshare). (See also the decadal paper on Cloud infrastructure by Arfon Smith et. Al.)
 
 \subsection{The catch }
-Switching to an object store removes the filesystem bottle neck however it also removes the filesystem index. This implies that a registry of the objects must be contained. We frequently do this anyway usually sucking meta data into a databases to allow searching - just in the case of an object store this would no longer be  optional.
+Switching to an object store removes the filesystem bottle neck however it also removes the filesystem index. This implies that a registry of the objects must be contained. We frequently do this anyway usually sucking meta data into a databases to allow searching --- just in the case of an object store this would no longer be  optional.
 
 
 \section{Conclusion}
 We should agree on an \emph{astronomy \gls{stack}} of services with agreed interfaces such that we can concentrate on building domain specific layers on top of industry standard tools.
 
-We should stop worrying about filesystems in astronomy - we should agree on a decent \gls{API} for object storage and a registry to go with it.
-The registry should build on existing agreements i.e. based on \gls{CAOM}-2 \citep{2007ASPC..376..347D}.
+We should stop worrying about filesystems in astronomy --- we should agree on a decent \gls{API} for object storage and a registry to go with it.
+The registry should build on existing agreements i.e., based on \gls{CAOM}-2 \citep{2007ASPC..376..347D}.
 
 Adoption of  a limited set of  services will  aid ease of use and cut down on wasted effort by all data providers.
